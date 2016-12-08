@@ -1,4 +1,5 @@
 # Walkthrough(攻略)
+
 ## Browser Extension(浏览器扩展)
 
 如果你不想安装redux devtools集成到我们的项目代码中，我们可以使用Redux DevTools Extension扩展工具在chrome浏览或者是火狐浏览器上安装。这个浏览器扩展工具提供了许多流行的监视，非常容易配置来过滤actions，并且它还不需要install任何的包。
@@ -19,9 +20,10 @@ npm install --save-dev redux-devtools-dock-monitor
 Create a DevTools Component（创建一个DevlTools组件）
 在你的项目中，通过一个monitor元素来创建一个DevTools组件，我们可以看一看下面例子中我们的monitor将由LogMonitor 合并 DockMonitor组成：
 
-	containers/DevTools.js
+`containers/DevTools.js`
+
 	import React from 'react';
-	
+
 	// 从redux-devtools中引入
 	import { createDevTools } from 'redux-devtools';
 	
@@ -64,7 +66,8 @@ store enhancer是一个函数，提高了createStore()的行为。你可以把st
 
 你应该添加DevTools.instrument()在applyMiddleware后面在你的compose函数参内，这是很关键的。这是因为applyMiddleware 可能是异步的，但是 DevTools.instrument() 期望所有的action都是一个普通的对象而不是异步中间件比如 redux-promis或者redux-thunk所解释的。所以确保中间件 applyMiddleware放在compose参数的第一位，DevTools.instrument()紧随其后。
 
-	store/configureStore.js
+`store/configureStore.js`
+
 	import { createStore, applyMiddleware, compose } from 'redux';
 	import rootReducer from '../reducers';
 	import DevTools from '../containers/DevTools';
@@ -100,7 +103,7 @@ store enhancer是一个函数，提高了createStore()的行为。你可以把st
 
 一般来说，如果使用Webpack你需要两个配置文件，一个针对开发环境一个针对生产环境，这是一个列子:
 
-webpack.config.prod.js
+`webpack.config.prod.js`
 
 	// ...
 	plugins: [
@@ -115,7 +118,7 @@ webpack.config.prod.js
 这就是为什么我们要创建一个configureStore.js文件，我们使用configureStore.dev.js 或者 configureStore.prod.js取决于我们的配置。
 虽然我们为此付出了稍多的维护代价，但好处是，我们可以完全掌控住任何开发依赖不会放进我们的生产代码中，并且我们可以更灵活地使用不用的中间件（比如 崩溃报告、日志记录）在我们的生产环境中。
 
-store/configureStore.js
+`store/configureStore.js`
 
 	// 使用DefinePlugin (Webpack) 或者 loose-envify (Browserify)
 	// 把开发和生产环境区分开发打包
@@ -137,7 +140,7 @@ store/configureStore.js
 	return createStore(rootReducer, initialState, enhancer);
 	};
 
-store/configureStore.dev.js
+`store/configureStore.dev.js`
 
 	import { createStore, applyMiddleware, compose } from 'redux';
 	import { persistState } from 'redux-devtools';
@@ -175,11 +178,12 @@ store/configureStore.dev.js
 	  return store;
 	}
 
-Render <DevTools> 在你的应用...
+### Render <DevTools> 在你的应用...
 最后，引入DevTools 组件到你的页面。
 你可以把它放到index.js 里面渲染。
 
-	index.js
+`index.js`
+
 	import React from 'react';
 	import { render } from 'react-dom';
 	import { Provider } from 'react-redux';
@@ -202,7 +206,9 @@ Render <DevTools> 在你的应用...
 	);
 
 我们推荐使用一种类似上面configureStore.js的做法。创建一个root.js组件，来渲染我们应用的根节点(通常来说是一<Provider>包含一些组件)。然后根据判断process.env.NODE_ENV来判断开发和生产版本暴露的js文件。
-	containers/Root.js
+
+`containers/Root.js`
+
 	if (process.env.NODE_ENV === 'production') {
 	  module.exports = require('./Root.prod');
 	} else {
@@ -249,7 +255,7 @@ Render <DevTools> 在你的应用...
 
 确保DevTools.instrument()和render <DevTools>只在开发环境中使用! 在生产中使用，它将会导致我们的应用变得非常缓慢，因为actions会源源不断地积累。如上所述，你要根据判断条件来引入它，比如DefinePlugin(Webpack)或者loos-envify(Browserify)来判断不再打包代码时引入它。
 
-这里是一个Redux DevTools处理生产情况下一个极佳的(例子)[https://github.com/erikras/react-redux-universal-hot-example/].
+这里是一个Redux DevTools处理生产情况下一个极佳的[例子](https://github.com/erikras/react-redux-universal-hot-example/).
 
 DevTools.instrument()store增强器应该被添加到你的中间件的后面，然后被compose函数当作参数包含起来，因为中间件可能是异步的.否则DevTools将不能观察到通过异步中间件（比如redux-promise或者redux-thunk）的action。
 

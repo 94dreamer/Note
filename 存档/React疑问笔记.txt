@@ -1,0 +1,76 @@
+
+csdn帐号
+dream94
+cde1994530
+
+102016080115413969261		2016-08-01 15:42:00	￥400.00 
+已完成	查看  
+
+有课程内的问题，可发邮件至 1405491181@qq.com ，问题要一次性描述清晰，指明课程和章节，可附带抓屏图片、代码片段说明等资料附件。解答结果会通过视频方式，加在对应视频课程后面，有同样问题的童鞋也可受益。
+
+课程问答的注意事项：
+1、［ 只解答课程内的问题 ］，提问时指明问题所在课程章节（例如：“我在项目开发中用到node.js 技术，我把代码给你帮我看看有什么问题”）这样的问题不予以解答。
+2、曾老师不会即时回答，一般24小时左右给予解答。（异步解答 ^o^）
+3、通过 email  1405491181@qq.com 把问题一次性说清楚，必要时，可附件图片和代码zip
+4、解答结果会通过视频方式，加在对应视频课程最后面的章节［有问必答］。
+5、提问前，先在此课程最后一章［有问必答］看看，有没有已经解答过的视频解答。
+
+
+
+
+
+1.ES6语法写法下的
+//属性校验器，表示改属性必须是string，否则报错
+//this.propTypes.value=React.PropTypes.string.isRequired;
+答：
+static propTypes=｛
+    value：React.PropTypes.string.isRequired
+｝
+
+
+2.import RcSwitch from 'rc-switch'   react的一个UI库
+3.import classNames from 'classnames'  class名的小库
+
+4.package.json依赖
+"devDependencies":{
+	babel-eslint:
+	dora:
+	dora-plugin-hmr:
+	dora-plugin-livereload:
+	dora-plugin-proxy:
+	dora-plugin-webpack:
+	eslint:
+	eslint-config-airbnb:
+	eslint-plugin-react:
+	pre-commit:
+}
+"pre-commit":{
+	"lint"
+}
+"scripts":{
+"starts":"dora -p 8001 --plugins \"webpack,hmr,proxy,livereload?
+"lint":"eslint --ext .js,.jsx src",
+"build":"atool-build -o ./dist/${npm_package_family}/${npm_"
+}
+
+5.
+/dist/		# 构建输出的文件会在这里
+/node_modules/	# 第三方类库和工具
+/src/		# 应用源码
+ /components/	# React component
+ /constants/	# 常量（比如 action types等）
+ /containers/	# React containers
+ /entries/ 	# 应用入口
+ /reducers/ 	# reducers
+ /routes/	# 路由信息
+ /sagas/	# redux-sagas
+ /services/	# 处理和服务器的交互
+proxy.config.js	# 配置 dora-plugin-proxy,用于 mock 和在线调试
+webpack.config.js	# 扩展 webpack 配置
+package.json	# 配置入口文件、依赖和 scripts
+
+
+
+
+
+
