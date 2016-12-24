@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0"
+  ],
+  "ignore":[
+    "jquery.js",
+    "jquery.min.js"
+  ],
+  "plugins": [
+
+  ]
+}
