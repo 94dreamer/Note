@@ -9,6 +9,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 // const createStore=redux.createStore;
 // const combineReducers=redux.combineReducers;
 //用ES6的模块化
+//import $ from 'jquery'
 
 
 var _jquery = require('jquery');
@@ -21,9 +22,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-_jquery2.default.ajax({
-    url: '/posts'
-});
 var InitState = { //初始的全局state，从服务端传来
     zhouzhen: {},
     liangwei: {},
@@ -53,9 +51,6 @@ function liangwei() {
 
     if (action.type == "CHANGE_LIANGWEI_NAME") {
         //当然也可以通过if else语句来判断逻辑
-        if (!_jquery2.default.isEmptyObject(state)) {
-            return state;
-        }
         // return $.extend({},state,{//当然也可以用jquery的extend方法合并属性
         //     names:action.names
         // })
@@ -117,12 +112,13 @@ var action1 = {
 store.dispatch(action1);
 
 //利用store的subscribe方法进行监听全局的state状态改变
-var listner1 = store.subscribe(function () {
+var unsubscribe1 = store.subscribe(function () {
     console.log("listener1", store.getState()); //getStore随处都可以调用，而不是一定在这个回调函数中才能调用到
 });
-//上面的返回的listner1，有一个unsubscribe方法，调用一下就移除了监听
+console.log(listner1)
+//上面的返回的unsubscribe是一个方法，调用一下就移除了监听
 setTimeout(function () {
-    listner1.unsubscribe();
+    unsubscribe1 && unsubscribe1();
 }, 10000);
 
 //进阶的是 在页面不应用react的时候，我们想要某一个模块获取和监听到state的某一部分，而不是state的全部属性，我们可以对subscribe进行扩展；
@@ -149,7 +145,7 @@ function select(state) {
         liangwei: state.liangwei
     };
 }; //定义一个选择函数
-var listner2 = observeStore(store, select, function (state) {
+var unsubscribe2 = observeStore(store, select, function (state) {
     console.log("listner2", state);
 });
 

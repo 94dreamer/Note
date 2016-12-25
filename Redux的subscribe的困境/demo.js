@@ -8,12 +8,10 @@
 // const combineReducers=redux.combineReducers;
 //用ES6的模块化
 //import $ from 'jquery'
-const $=require('jquery');
+import $ from 'jquery'
 
 import {createStore,combineReducers} from 'redux';
-$.ajax({
-    url:'/posts'
-})
+
 const InitState={//初始的全局state，从服务端传来
     zhouzhen:{},
     liangwei:{},
@@ -36,9 +34,6 @@ function zhouzhen(state={},action){     //reducer的函数名需要跟state对�
 
 function liangwei(state={},action) {
     if(action.type=="CHANGE_LIANGWEI_NAME"){//当然也可以通过if else语句来判断逻辑
-        if(!$.isEmptyObject(state)){
-            return state
-        }
         // return $.extend({},state,{//当然也可以用jquery的extend方法合并属性
         //     names:action.names
         // })
@@ -92,16 +87,19 @@ let action1={
         value:"man"
     }
 };
-store.dispatch(action1);
+setTimeout(function () {
+    store.dispatch(action1);
+},2000)
+
 
 
 //利用store的subscribe方法进行监听全局的state状态改变
-var listner1=store.subscribe(function () {
-    console.log("listener1",store.getState());  //getStore随处都可以调用，而不是一定在这个回调函数中才能调用到
+var unsubscribe1=store.subscribe(function () {
+    console.log("listener1\n",store.getState(),"\n");  //getStore随处都可以调用，而不是一定在这个回调函数中才能调用到
 });
-//上面的返回的listner1，有一个unsubscribe方法，调用一下就移除了监听
+//上面的返回的unsubscribe1是一个方法，调用一下就移除了监听
 setTimeout(function () {
-    listner1.unsubscribe()
+    unsubscribe1()
 },10000);
 
 
@@ -120,25 +118,25 @@ function observeStore(store, select, onChange) {
     }
 
     let unsubscribe = store.subscribe(handleChange);
-    handleChange();
+    handleChange(); //自运行一次，保存原始state
     return unsubscribe;
 }
 //我们可以这样调用
 function select(state) {
-    return {
-        liangwei:state.liangwei
-    }
+    return state.liangwei
 };//定义一个选择函数
-var listner2=observeStore(store,select,function (state) {
-   console.log("listner2",state)
+var unsubscribe2=observeStore(store,select,function (state) {
+   console.log("listner2\n",state,"\n")
 });
 
-//利用store的dispatch方法派发一个action
-let action2={
-    type:"CHANGE_LIANGWEI_NAME",
-    names:"梁炜"
-};
-store.dispatch(action2);
+// //利用store的dispatch方法派发一个action
+// let action2={
+//     type:"CHANGE_LIANGWEI_NAME",
+//     names:"梁炜"
+// };
+// setTimeout(function () {
+//     store.dispatch(action2);
+// },2000)
 
 
 
