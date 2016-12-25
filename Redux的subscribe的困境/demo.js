@@ -89,7 +89,7 @@ let action1={
 };
 setTimeout(function () {
     store.dispatch(action1);
-},2000)
+},1000)
 
 
 
@@ -123,20 +123,20 @@ function observeStore(store, select, onChange) {
 }
 //我们可以这样调用
 function select(state) {
-    return state.liangwei
+    return state.liangwei//某个值
 };//定义一个选择函数
 var unsubscribe2=observeStore(store,select,function (state) {
    console.log("listner2\n",state,"\n")
 });
 
-// //利用store的dispatch方法派发一个action
-// let action2={
-//     type:"CHANGE_LIANGWEI_NAME",
-//     names:"梁炜"
-// };
-// setTimeout(function () {
-//     store.dispatch(action2);
-// },2000)
+//利用store的dispatch方法派发一个action
+let action2={
+    type:"CHANGE_LIANGWEI_NAME",
+    names:"梁炜"
+};
+setTimeout(function () {
+    store.dispatch(action2);
+},2000)
 
 
 
