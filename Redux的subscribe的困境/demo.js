@@ -8,7 +8,7 @@
 // const combineReducers=redux.combineReducers;
 //用ES6的模块化
 //import $ from 'jquery'
-import $ from 'jquery'
+import $,{extend} from 'jquery'
 
 import {createStore,combineReducers} from 'redux';
 
@@ -96,11 +96,15 @@ setTimeout(function () {
 //利用store的subscribe方法进行监听全局的state状态改变
 var unsubscribe1=store.subscribe(function () {
     console.log("listener1\n",store.getState(),"\n");  //getStore随处都可以调用，而不是一定在这个回调函数中才能调用到
+
 });
 //上面的返回的unsubscribe1是一个方法，调用一下就移除了监听
 setTimeout(function () {
     unsubscribe1()
 },10000);
+setTimeout(function () {
+  store.dispatch(action1);
+},1100)
 
 
 
@@ -136,7 +140,7 @@ let action2={
 };
 setTimeout(function () {
     store.dispatch(action2);
-},2000)
+},2000);
 
 
 
