@@ -1,6 +1,6 @@
 ## 分享平时学习新技术的笔记，包含翻译的英文技术文档。
 
-### 另附我的个人博客网址 [94dreamer.com](http://94dreamer.com)
+### 我的个人博客网址 [94dreamer.com](http://94dreamer.com)
 
 - [Sourcetree, Git GUI](https://www.sourcetreeapp.com/)
 - [编程教学视频网站(英文)](https://www.codeschool.com/)
