@@ -1,4 +1,8 @@
-## Redux的subscribe的困境
+### 1. [内附PPt](https://github.com/94dreamer/Note/tree/master/Redux%E7%9A%84subscribe%E7%9A%84%E5%9B%B0%E5%A2%83/ppt)
+
+### 2. [以及如何在node命令行下使用ES6/ES2017](https://github.com/94dreamer/Note/blob/master/Redux%E7%9A%84subscribe%E7%9A%84%E5%9B%B0%E5%A2%83/babel%E9%85%8D%E7%BD%AE.md)
+
+### 3. Redux的subscribe的困境
 
 
 下面这段代码可以基于subscribe封装一个更高级的API，用作监听state：
