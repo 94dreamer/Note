@@ -41,23 +41,43 @@
 
 ## 二、简单的HTTP协议
 
+tcp／ip协议
+
 ## 三、HTTP报文内的HTTP信息
+
 
 ## 四、返回结果的HTTP状态码
 
+之前已经写过一篇文章介绍过了 [点这里](https://github.com/94dreamer/Note/blob/master/大话HTTP状态码/)
+
+
 ## 五、与HTTP协作的Web服务器
+
+
 
 ## 六、HTTP首部
 
+
+
 ## 七、确保安全的HTTPS
+
+SSL\HTTPS  
 
 ## 八、确认访问用户的认证
 
+cookie
+
 ## 九、基于HTTP的功能追加协议
+
+
 
 ## 十、构建Web内容的技术
 
+
+
 ## 十一、Web的攻击技术
+
+XSS注入攻击、SQL注入攻击
 
 
 
