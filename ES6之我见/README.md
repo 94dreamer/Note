@@ -245,6 +245,24 @@ Generator函数是一个状态机，封装了多个内部状态。
 
 #### 17. Promise对象
 
+(1) 对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：Pending、Resolved、Rejected。
+(2) 一旦状态改变，就不会再变，任何时候都可以得到这个结果。
+
+有了Promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。
+
+```
+var promise = new Promise(function(resolve,reject){
+	//...some code
+	
+	if(/* 异步操作成功 */){
+		resolve(value);
+	}else{
+		reject(error);
+	}
+})
+```
+
+18.异步操作和Async函数
 
 
 
