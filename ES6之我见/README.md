@@ -221,11 +221,27 @@ bar.bind(foo);
 
 #### 13. Proxy
 
+Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”，即对编程语言进行编程。
+
 #### 14. Reflect
+
+Reflect 也是ES6为了操作对象而提供的新API。
+
+(1) 将Object对象一些明显属于语言内部的方法，放到Reflect对象上。
+(2) 修改某些Object方法的返回结果。
+(3) 让Object操作都变成函数行为。
+(4) Reflect对象的方法与Proxy对象的方法一一对应。
 
 #### 15. Iterator和for...of循环
 
+
+
 #### 16. Generator函数
+
+Generator函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同。
+Generator函数是一个状态机，封装了多个内部状态。
+
+
 
 #### 17. Promise对象
 
