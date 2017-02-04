@@ -262,7 +262,21 @@ var promise = new Promise(function(resolve,reject){
 })
 ```
 
-18.异步操作和Async函数
+#### 18.异步操作和Async函数
+
+#### 19.Class
+
+#### 20.Decorator
+
+#### 21.Module
+
+早在大概7、8年前，因为Web应用的复杂度上升，就已经出了JS的模块化思想，主要分为两派：AMD、CMD。
+
+区别他们的是 `Module` 是ES6的新特性，是语言层面对模块化的支持。
+
+> 与之前的Node的commonJs和SeaJs模块打包的区别开来的模块加载机制不同，Module是动态的加载，导入的是变量的 `只读引用` ，而不是拷贝
+
+
 
 
 
