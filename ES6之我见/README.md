@@ -276,7 +276,35 @@ var promise = new Promise(function(resolve,reject){
 
 > 与之前的Node的commonJs和SeaJs模块打包的区别开来的模块加载机制不同，Module是动态的加载，导入的是变量的 `只读引用` ，而不是拷贝
 
+我可以把前者看作是静态的打包，后者则是动态的打包。为什么这么说呢？我们看一下ES6的`module`代码：
 
+```
+// 1. export default 可以做默认导出
+
+// a.js
+export default 5；	// 默认导出
+
+// b.js
+import b, {a} from './a.js'；
+
+// 2. 动态的加载机制
+
+// a.js
+
+export let a = 10;
+export let b = 10;
+export function add(){
+	a = 15;
+	b = 20;
+	return a+b;
+};
+
+// b.js
+import {a,b,add} from './a.js';
+a+b;	// 20
+add();	//35
+a+b;	//35
+```
 
 
 
