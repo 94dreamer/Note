@@ -2,9 +2,9 @@
 
 ### 一 前端自动化
 
-1. 引入ES6
-2. 引入Babel
-3. Webpack打包
+1. 基础库：FastClick/Zepto/Spin.js/
+2. 引入ES6/Babel
+3. Webpack打包，并vendor基础库
 4. 小图片用Base64处理`（DataURI）`
 5. Webpack抽离CSS
 6. CSS Module
