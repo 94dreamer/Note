@@ -10,8 +10,9 @@
 6. CSS Module
 7. vConsole/AlloyLever 移动真机模拟控制台
 8. AlloyDesigner前端页面与设计稿对齐
-9. 访问 Google PageSpeed 在线评定网站来重点分析优化
-10. eslint来统一风格和检查错误
+9. Modernizr 用于检测用户浏览器的 HTML5 与 CSS3 特性
+10. 访问 Google PageSpeed 在线评定网站来重点分析优化
+11. eslint来统一风格和检查错误
 
 ### 二 前端规范化
 
