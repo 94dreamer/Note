@@ -14,7 +14,7 @@ meta标签有一个必要属性`content`，它一般是相关的文本信息，�
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 ```
 
-2.苹果机下伪装成web app，隐藏工具栏和功能条。
+2. 当从主屏幕图标启动时，使网页以全屏模式运行；也隐藏浏览器顶部和底部的地址栏和组件栏。
 
 ```
 <meta name="apple-mobile-web-app-capable" content="yes">
