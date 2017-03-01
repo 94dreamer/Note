@@ -5,14 +5,16 @@
 1. 基础库：FastClick/Zepto/Spin.js/
 2. 引入ES6/Babel
 3. Webpack打包，并vendor基础库
-4. 小图片用Base64处理`（DataURI）`
+4. 小图片用Base64处理`（DataURI）`，并压入css（极大合并请求数）
 5. Webpack抽离CSS
-6. CSS Module
-7. vConsole/AlloyLever 移动真机模拟控制台
-8. AlloyDesigner前端页面与设计稿对齐
-9. Modernizr 用于检测用户浏览器的 HTML5 与 CSS3 特性
-10. 访问 Google PageSpeed 在线评定网站来重点分析优化
-11. eslint来统一风格和检查错误
+6. 前端通过hash做静态永久缓存，同时前端拿到版本控制权
+7. SASS or CSS Module
+8. live-server 实时开发刷新页面
+9. vConsole/AlloyLever 移动真机模拟控制台
+10. AlloyDesigner前端页面与设计稿对齐
+11. Modernizr 用于检测用户浏览器的 HTML5 与 CSS3 特性
+12. 访问 Google PageSpeed 在线评定网站来重点分析优化
+13. eslint来统一风格和检查错误
 
 ### 二 前端规范化
 
@@ -77,8 +79,19 @@
 > 主要针对资源请求过多和脚本管理杂乱导致首屏加载缓慢的现状
 > ![request](./doc/img/request.png)
 
-1. 使用ES6模块化来规范js引用
+1. 使用ES6模块化来规范js/css引用,按需加载部分依旧使用require
 2. 非首屏图片懒加载
 3. 使用`'use strict'` 更快更方便的调试
+4. 异步渲染模块形成组件，js／css／模版揉合同一个目录
+5. 考虑团队baiduTemplate／handlebars 选其一作为前端模板引擎
+6. 文件夹命名考虑page/module/static三种类型区分类。
+
+
+### 四 待加入点
+
+* img标签图片而非background-image图片如何打成Base64到html
+* 本次项目的组件模块可以供其他系统复用
+* localStotage缓存静态资源
+
 
 https://github.com/apeatling/web-pull-to-refresh下拉更新https://github.com/zhangchen2397/infiniteScrollPage无限下拉 分页http://developer.51cto.com/art/201505/476334.htmhttps://github.com/ximan/dropload下拉加载数据https://github.com/WittBulter/taobaoScroller模仿手机淘宝的上下拉加载https://github.com/pklauzinski/jscroll滚动加载https://github.com/ximan/dropload下拉加载https://github.com/Alex-fun/vue-listvue-list 列表滚动
