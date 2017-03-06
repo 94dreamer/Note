@@ -85,6 +85,10 @@
 4. 异步渲染模块形成组件，js／css／模版揉合同一个目录
 5. 考虑团队baiduTemplate／handlebars 选其一作为前端模板引擎
 6. 文件夹命名考虑page/module/static三种类型区分类。
+7. 图片控制 - 合理地控制地 jpg/png的选择
+8. 图片 优化高分屏和弱网适配
+9. 网络 域名收敛 减少请求数 文本数据的优化与压缩 数据接口优化与监控
+10. 网络 內联小片段样式和脚本
 
 
 ### 四 待加入点
@@ -92,6 +96,8 @@
 * img标签图片而非background-image图片如何打成Base64到html
 * 本次项目的组件模块可以供其他系统复用
 * localStotage缓存静态资源
+* 图片媒体提供多种尺寸供分辨率使用 srcset
+* 组织移动核心基础库
 
 
 https://github.com/apeatling/web-pull-to-refresh下拉更新https://github.com/zhangchen2397/infiniteScrollPage无限下拉 分页http://developer.51cto.com/art/201505/476334.htmhttps://github.com/ximan/dropload下拉加载数据https://github.com/WittBulter/taobaoScroller模仿手机淘宝的上下拉加载https://github.com/pklauzinski/jscroll滚动加载https://github.com/ximan/dropload下拉加载https://github.com/Alex-fun/vue-listvue-list 列表滚动

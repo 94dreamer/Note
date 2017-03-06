@@ -29,3 +29,23 @@
 - [编程教学视频网站(英文)](https://www.codeschool.com/)
 - [HTTP Developer’s Handbook(英文)](http://www.amazon.com/HTTP-Developers-Handbook-Chris-Shiflett/dp/0672324547)
 - [Front-end Handbook(英文)](https://www.gitbook.com/book/frontendmasters/front-end-handbook/details)
+
+##书单
+
+* JavaScript语言精粹
+* 数据结构与算法 JavaScript描述
+* JavaScript设计模式与开发实践
+* 锋利的jQuery（第2版）
+* HTML、CSS、JavaScript网页制作 从入门到精通
+* Haskell趣学指南
+* 图解HTTP
+* JavaScript高级程序设计
+* Node.js入门经典
+* WebKit技术内幕
+* PHP和MySQL Web开发（原书第4版）
+* 深入React技术栈
+* 代码整洁之道 程序员的职业素养
+* 深入理解计算机系统（原书第3版）
+* Photoshop CC 完全自学教程
+* 大话设计师
+* APP界面设计全解析
