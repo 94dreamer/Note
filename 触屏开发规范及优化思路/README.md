@@ -3,28 +3,38 @@
 
 基础搭建地址：[多页面触屏开发](https://github.com/94dreamer/touch-webpack-multiPage)
 
-### 一 项目搭建设想（前端自动化与规范化）
+> 主要针对资源请求过多和脚本管理杂乱导致首屏加载缓慢的现状
+> ![request](./img/request.png)
 
-1. 基础库：FastClick/Flexible/JQuery(Zepto)/Template/Lazyload/Spin/等
-2. 引入ES6/Babel/Sass/PostCSS
-3. Webpack利用`ExtractTextPlugin`抽离CSS
-4. Webpack打包，并vendor基础库
-5. 小图片用Base64处理`（DataURI）`，并压入css（极大合并请求数）
-6. 前端通过hash做静态永久缓存，同时前端拿到版本控制权
-7. CSS Module？
-8. live-server 实时开发刷新页面
-9. vConsole/AlloyLever 移动真机模拟控制台
-10. AlloyDesigner前端页面与设计稿对齐
-11. Modernizr 用于检测用户浏览器的 HTML5 与 CSS3 特性
-12. 访问 Google PageSpeed 在线评定网站来重点分析优化
-13. eslint来统一风格和检查错误
-14. 字体设置：使用无衬线字体
-15. 基础交互：设置全局的CSS样式，避免图中的长按弹出菜单与选中文本的行为  
+### 一 项目前端架构设想（自动化与规范化）
+1. 放弃AMD/CDM模块化规范，主要使用ES6模块化来规范js/css引用,但按需加载部分依旧使用require，Webpack打包，并vendor基础库。
+2. 基础库：FastClick/Flexible/JQuery(Zepto)/Template/Lazyload/Spin/
+3. 考虑团队baiduTemplate／handlebars 选其一作为前端模板引擎
+4. 引入ES6/Babel/Sass/PostCSS
+5. Webpack利用`ExtractTextPlugin`抽离CSS
+6. 小图片用Base64处理`（DataURI）`，并压入css（极大合并请求数），非首屏图片懒加载
+7. 5. 异步渲染模块形成组件，js／css／模版揉合同一个目录
+8. 文件夹命名考虑page/module/static三种类型区分类
+9. 前端通过hash做静态永久缓存，同时前端拿到版本控制权
+10. CSS Module？
+11. live-server 实时开发刷新页面
+12. vConsole/AlloyLever 移动真机模拟控制台
+13. AlloyDesigner前端页面与设计稿对齐
+14. Modernizr 用于检测用户浏览器的 HTML5 与 CSS3 特性
+15. 访问 Google PageSpeed 在线评定网站来重点分析优化
+16. eslint来统一风格和检查错误
+17. 字体设置：使用无衬线字体
+18. 基础交互：设置全局的CSS样式，避免图中的长按弹出菜单与选中文本的行为  
 
 ### 二 移动性能注意点
+
+#### 1. 网络优化：加载性能优化, 达到打开足够快
+
 ```	
-加载性能优化, 达到打开足够快
-	
+- 內联小片段样式和脚本减少网络请求	
+- 域名收敛 减少请求数 
+- 文本数据的优化与压缩 
+- 数据接口优化与监控
 - 合理安排请求顺序
 - 缩短关键路径
 - 权衡利弊来利用缓存（配置化）
@@ -35,9 +45,11 @@
 - 尽量使用CSS3代替图片
 - 初始首屏之外的静态资源（JS/CSS）延迟加载 注意！
 - 考虑延迟加载非首屏业务模块
-	
-运行性能优化, 达到操作足够流畅
-	
+```	
+
+#### 2. 性能优化： 达到操作足够流畅
+
+```	
 - 避免 iOS 300+ms 点击延时问题 注意！
 - 缓存 DOM 选择与计算
 - 避免触发页面重绘的操作
@@ -50,21 +62,6 @@
 - 尽能少的使用CSS高级选择器与通配选择器
 
 ```
-
-### 三 前端架构优化
-
-> 主要针对资源请求过多和脚本管理杂乱导致首屏加载缓慢的现状
-> ![request](./img/request.png)
-
-1. 放弃AMD/CDM模块化规范，主要使用ES6模块化来规范js/css引用,但按需加载部分依旧使用require
-2. 非首屏图片懒加载
-3. 使用`'use strict'` 更快更方便的调试
-4. webpack避免打包大型类库（vender）
-5. 异步渲染模块形成组件，js／css／模版揉合同一个目录
-6. 考虑团队baiduTemplate／handlebars 选其一作为前端模板引擎
-7. 文件夹命名考虑page/module/static三种类型区分类
-8. 域名收敛 减少请求数 文本数据的优化与压缩 数据接口优化与监控
-9. 內联小片段样式和脚本减少网络请求
 
 
 ### 三 针对图片、版本控制的优化描述
@@ -118,11 +115,10 @@
 
 #### 1. lazyload
 
-我们常说的延迟加载主要是图片延迟加载，除此之外还有一些异步交互模块也可以做到延迟异步加载。
 
-```
+	- 我们常说的延迟加载主要是图片延迟加载，除此之外还有一些异步交互模块也可以做到延迟异步加载。
 为需要延迟的img标签设置src时留空，最好是设置一个统一的默认图，把真实URI放到data-src这类自定义的属性中。这样页面进来一开始是不会加载真实的URI资源的，除非img当时就在可视区域，否则只有当满足加载条件时，一般来说是scroll监听或者关键的dom显示隐藏操作，我们将img的src重置为自定义属性的值即可。
-```
+
 
 #### 2. fake页
 
