@@ -1,4 +1,5 @@
 # WebKit随笔
+原文地址：[WebKit随笔](https://github.com/94dreamer/Note/blob/master/WebKit随笔)(更新和修改的首发地址)
 
 ![http](https://github.com/94dreamer/Note/blob/master/WebKit随笔/img/)
 

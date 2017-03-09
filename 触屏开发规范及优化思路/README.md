@@ -13,7 +13,7 @@
 4. 引入ES6/Babel/Sass/PostCSS
 5. Webpack利用`ExtractTextPlugin`抽离CSS
 6. 小图片用Base64处理`（DataURI）`，并压入css（极大合并请求数），非首屏图片懒加载
-7. 5. 异步渲染模块形成组件，js／css／模版揉合同一个目录
+7. 异步渲染模块形成组件，js／css／模版揉合同一个目录
 8. 文件夹命名考虑page/module/static三种类型区分类
 9. 前端通过hash做静态永久缓存，同时前端拿到版本控制权
 10. CSS Module？
