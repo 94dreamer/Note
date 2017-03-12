@@ -1,12 +1,14 @@
-# WebKit随笔
-原文地址：[WebKit随笔](https://github.com/94dreamer/Note/blob/master/WebKit随笔)(更新和修改的首发地址)
+<h1 style="line-height:50px;"><img src="../img/webkit.svg" width=50 style="vertical-align:bottom;"> WebKit随笔（一） </h1>
+原文地址：[WebKit随笔](https://github.com/94dreamer/Note/blob/master/WebKit随笔/一)(更新和修改的首发地址)
 
-![http](https://github.com/94dreamer/Note/blob/master/WebKit随笔/img/)
+
 
 > 本文依据朱永盛老师的《WebKit技术内幕》一书作为参考书，结合网络共享资源对Webkit的历史和技术点进行随笔记录，或跳过一些理解不到位的。
 
 
 ### 一、浏览器简史
+<img src="../img/network.png" height=250 style="vertical-align:bottom;">
+
 1. 93年网景浏览器（netscape）诞生，宣布第一代浏览器的告世。
 2. 95年微软IE（Internet Explorer）受益于window系统的捆绑安装，将老大哥网景拉下马，并一家独大。
 3. 98年败落的网景公司的工程师们联合成立了Mozilla基金会，主导开发了著名的开源项目火狐（Firefox）浏览器，04年发布1.0版本。
@@ -15,6 +17,8 @@
 6. 08年，Google以 Webkit 为内核，创建了Chromium，在Chromium保持技术先进的基础上（试验田），Google发布了更稳定版本的Chrome浏览器，Chrome在各个方面做的很好，迅速加入IE、Firefox瓜分浏览器市场份额的大战，三足鼎立。
 
 ### 二、HTML5下的浏览器
+<img src="../img/browsers_say.png" height=250 style="vertical-align:bottom;">
+
 1. 浏览器基本功能：网络（网络是Web应用的瓶颈）、资源管理、网页浏览、多页面管理、插件和扩展、账号和同步、安全机制、开发者工具。
 2. IE浏览器到目前为止只支持Window系统，Firefox尚不支持IOS系统。
 3. HTML5作为新一代的网页标准，是一系列新技术的集合：离线、储存、连接、文件访问、语义、音频和视频、3D和图形、展示、性能、其他。
@@ -22,11 +26,16 @@
 5. 用户代理（User Agent）是一个很有趣的现象，本来这是浏览器向服务提供商提供的类似身份证明的头部文件信息，其他后来的浏览器为了享有同样的服务提供的定制内容，不得不伪装了这个头部信息。（这些伪装者不仅有臭名昭著的IE更有Safari、Chrome等现代浏览器）
 
 ### 三、浏览器内核
+<img src="../img/core.jpg" height=200 style="vertical-align:bottom;">
+
 1. 浏览器内核通常也是渲染引擎，根据描述构建数学模型，通过模型生成图像。
-2. 主流的浏览器内核有Trident、Gecko、WebKit，分别是IE、火狐、Chrome的内核（13年Google的Blink内核其实根源也是WebKit）。
+2. 主流的浏览器内核有Trident、Gecko、WebKit，分别是IE、火狐、Chrome的内核。
+>（13年Google的Blink内核其实根源也是WebKit,Blink是WebKit的分支，缘由是Google和Apple的对WebKit的进化概念发生了分歧）。
+
 3. 渲染引擎主要包括 HTML解释器、CSS解释器、布局、JavaScript引擎、绘图。
 
 ### 四、WebKit的渲染过程
+<img src="../img/render.jpeg" height=200 style="vertical-align:bottom;">
 
 >根据数据的流向，将渲染过程分成三个阶段。
 
@@ -52,6 +61,8 @@
 
 ### 五、WebKit架构
 > WebKit之所以支持很多浏览器和操作系统，它的秘密就是保持核心，充分解耦。
+
+<img src="../img/webcore.png" height=300 style="vertical-align:bottom;">
 
 1. 最底层是“操作系统”，浏览器属于应用层，理所当用需要调用操作系统与硬件的驱动处理。
 2. 操作系统之上是各类WebKit工作依赖的第三方库，这些库是Webkit运行和处理的基础包。比如：图形库，网络库，视频库。加载和渲染网页自然需要运用到他们。如何更高效对接这些底层库，并设计健壮的架构来支撑将来可能愈发多和复杂的基础库，正是我们浏览器开发者所要考虑的重要问题。
