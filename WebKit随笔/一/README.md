@@ -30,7 +30,7 @@
 
 1. 浏览器内核通常也是渲染引擎，根据描述构建数学模型，通过模型生成图像。
 2. 主流的浏览器内核有Trident、Gecko、WebKit，分别是IE、火狐、Chrome的内核。
->（13年Google的Blink内核其实根源也是WebKit,Blink是WebKit的分支，缘由是Google和Apple的对WebKit的进化概念发生了分歧）。
+>（13年Google的Blink内核其实根源也是WebKit,Blink是WebKit的分支，缘由是Google和Apple的对WebKit的进化概念相左）。
 
 3. 渲染引擎主要包括 HTML解释器、CSS解释器、布局、JavaScript引擎、绘图。
 
