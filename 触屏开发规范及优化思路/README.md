@@ -6,9 +6,11 @@
 > 主要针对资源请求过多和脚本管理杂乱导致首屏加载缓慢的现状
 > ![request](./img/request.png)
 
-#### 本次架构后页面加载渲染速度在600-800ms内。非异步资源请求数在20以内。缓存下请求资源大小为16KB. 
+#### 本次架构后页面加载渲染速度在500-800ms内。非异步资源请求数在20以内。缓存下请求资源大小为16KB. 
 线上地址：[新浪乐居二手房触屏前台](http://m.leju.com/touch/esf/)
-> ![end](./img/end.png)
+
+<img src="./img/end1.png" width="33%"><img src="./img/end2.png" width="33%"><img src="./img/end3.png" width="33%">
+
 
 ### 一 项目前端架构设想（自动化与规范化）
 1. 放弃AMD/CDM模块化规范，主要使用ES6模块化来规范js/css引用,但按需加载部分依旧使用require，Webpack打包，并vendor基础库。
