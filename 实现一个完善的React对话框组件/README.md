@@ -181,12 +181,45 @@ class Dialog extends Component {
 
 ### 5. 解决了dialog的正常布局思路，在react层面我们需要思考这么几个问题：
 
-- 如何实现把Dialog组件渲染置body根下
+- 如何实现把Dialog组件渲染置body根下，在正常的React模式中我们没办法在组件外进行操作。
 
-	答案就在这个react-dom的不常用API：unstable_renderSubtreeIntoContainer(parentComponent, nextElement, container, callback)
+	答案就在这个react-dom的不常用API：unstable_renderSubtreeIntoContainer(parentComponent, nextElement, container, callback)，这个API可以
+	于此，我们需要重写组件的render方法和重新自定义一个渲染方法。
+	
+	```
+	render() {
+		renderDialog();
+		retrun null
+	}
+	
+	renderDialog() {
+		unstable_renderSubtreeIntoContainer(,,)
+	}
+	```
 
 - 组件需要一些基本的动画 防止动作干涩
 
 	react官方提供的react-addons-transition-group
+	为此我们需要在dialog容器包裹一层动画组件容器
 	
+	```
+	<ReactCSSTransitionGroup
+		transitionName="example"
+      	transitionEnterTimeout={500}
+      	transitionLeaveTimeout={300}>
+		<div className="dialog-container">
+		    <div className="dialog">
+		        <div className="dialog-title">
+		        	{title}
+		        </div>
+		        <div className="dialog-content">
+		        	{children}
+		        </div>
+		        <div className="dialog-action">
+		        	{actions}
+		        </div>
+		    </div>
+		</div>
+    </ReactCSSTransitionGroup>
+	```
 -
