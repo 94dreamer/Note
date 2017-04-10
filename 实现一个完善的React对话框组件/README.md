@@ -284,14 +284,15 @@ const {open} = this.props; //接受变量控制dialog的显示
 return (
 	<Modal>
 		<Dialog 
-			title="title" 
+			title="Dialog对话框Demo" 
 			open={open} 
 			modal={false} 
-			action={<Button />}
+			action={<Button children="阿牛" />}
 			onRequestClose={ ()=>{this.changeOpen()} }
-			>
-				Dialog Content
+		>
+			Dialog内容
 		</Dialog>
 	</Modal>
 )
 ```
+![dialog](./dialog.png)
