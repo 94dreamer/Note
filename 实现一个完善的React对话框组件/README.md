@@ -62,7 +62,7 @@ z-index: 1400;
 position: fixed;
 top:50%;
 left:50%;
-translate(-50%, -50%);
+transform:translate(-50% -50%);
 transform: translateZ(0px);
 transition: left 0ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0ms, opacity 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 0ms;
 z-index: 1500;
