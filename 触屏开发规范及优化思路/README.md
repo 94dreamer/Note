@@ -6,7 +6,7 @@
 > 主要针对资源请求过多和脚本管理杂乱导致首屏加载缓慢的现状
 > ![request](./img/request.png)
 
-#### 本次架构后页面加载渲染速度在500-800ms内。非异步资源请求数在20以内。缓存下请求资源大小为16KB. 
+#### 本次工程化后页面加载渲染速度在500-800ms内。非异步资源请求数在20以内。缓存下请求资源大小为16KB. 
 线上地址：[新浪乐居二手房触屏前台](http://m.leju.com/touch/esf/)
 
 <img src="./img/end1.png" width="33%"><img src="./img/end2.png" width="33%"><img src="./img/end3.png" width="33%">
