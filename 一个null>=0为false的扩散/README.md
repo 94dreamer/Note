@@ -22,4 +22,14 @@ className={this.props.notvisitday >= 0 || this.props.visitday >=0 ? null : "acti
 <img src="./img/2.png" width="220" />
 - 而 `Number(undefined)` 和 `var a={};Number(a);` 则为 `NaN`。
 
+此这个概念又一个大胆的想法，我又试验了
+
+<img src="./img/3.png" width="150" />
+
+无一例外，用 `Number方法可以强制换成0的`都可以喝 `>=0`为真。
+
+#### ！！👀但是，为什么连`null`都可以偏偏`{}`空对象不可以转换成数字。
+
+
+
 
