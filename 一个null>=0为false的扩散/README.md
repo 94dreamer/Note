@@ -31,4 +31,7 @@ className={this.props.notvisitday >= 0 || this.props.visitday >=0 ? null : "acti
 #### ！！👀但是，为什么连`null`都可以偏偏`{}`空对象不可以转换成数字。
 
 
-因为 Number([]) 和 Number({}) 会首先调用各自的valueOf方法，如果没有得到期望值就会调用toString方法，他们的toString方法的值分别为 "" "[object Object]";所以 一个为0 ，一个 为NaN。
+因为 Number([]) 和 Number({}) 会首先调用各自的valueOf方法，如果没有得到期望值就会调用toString方法，他们的toString方法的值分别为 "" ， "[object Object]";
+所以 一个为0 ，一个 为NaN。
+
+array 跟 object 的 toString 结果不一样是因为，Array.protptype 的 toString 覆盖了 Object.proptype 的 toString
