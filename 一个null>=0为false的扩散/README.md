@@ -19,7 +19,9 @@ className={this.props.notvisitday >= 0 || this.props.visitday >=0 ? null : "acti
 - `>` `>=` 和 `==` 并不是同一层次的 boolean判断，在''''进行 `> >= < <=`判断是比较式两侧进行隐式转换为number类型。
 - 所以 `null == 0` 为false。
 - 而 `null >= 0` or `null > 0` 时候 null隐式转换成 `Number(null)` 为 `0`。
+
 <img src="./img/2.png" width="220" />
+
 - 而 `Number(undefined)` 和 `var a={};Number(a);` 则为 `NaN`。
 
 此这个概念又一个大胆的想法，我又试验了
