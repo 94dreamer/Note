@@ -13,7 +13,7 @@
 
 
 ### 一 项目前端架构设想（自动化与规范化）
-1. 放弃AMD/CDM模块化规范，主要使用ES6模块化来规范js/css引用,但按需加载部分依旧使用require，Webpack打包，并vendor基础库。
+1. 放弃AMD/CMD模块化规范，主要使用ES6模块化来规范js/css引用,但按需加载部分依旧使用require，Webpack打包，并vendor基础库。
 2. 基础库：FastClick/Flexible/JQuery(Zepto)/Template/Lazyload/Spin/
 3. 考虑团队baiduTemplate／handlebars 选其一作为前端模板引擎
 4. 引入ES6/Babel/Sass/PostCSS
