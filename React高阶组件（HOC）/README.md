@@ -20,7 +20,41 @@ const newComponent = hiderOderFunction(OldComponent);
 const newComponent = hiderOderFunction(params)(OldComponent);
 ```
 
-### 二、
+### 二、React高阶组件的实现
+
+如果我们学过设计模式，同时用了`HOC`，我们很容易将后者与装饰者模式联系起来。我们通过组合的方式到达很高灵活度的装饰搭配，我们可以将这种思维带到接下来的`HOC`实现。
+
+实现的高阶组件的方法有两种：
+
+- 属性代理。函数通过返回包裹原组件来添加额外功能。
+- 反向继承。函数通过返回继承原组件来控制render。
+
+1. 属性代理
+
+属性代理是常见高阶组件的实现方式。
+
+```
+//我们来写一个最简单的
+const MyContainer = (WrappedComponent) =>class extends Components{
+	render(){
+		const newProps={
+			text:'newText',
+		}
+		return <WrappedComponent {...this.props} {...newProps} />
+	}
+}
+```
+
+就这么简单我们实现了对原组件props的添加，我们还可以在`MyContainer`内添加各种生命周期和自定义方法实现对`render`时`return`组件的各种控制。
+
+2. 反向继承
+
+
+
+### 总结和建议
+
+- 第一次看到`HOC`这个概念，很大一部分人是懵逼的，被这个名词吓到了，以为它是很难得，我也不认为在你没有运用HOC之前初次看完这篇文章就能够拨云见日。
+- 吸收`HOC`最好的时机是，当你的组件代码的复用性出现问题，出现了大量没必要的冗余可复用功能性代码时候，你就可以反过来看看`HOC`，一段蹩脚的英文 *when need now，the best time*。
 
 
 
