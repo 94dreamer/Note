@@ -84,12 +84,55 @@ const MyContainer = (WrappedComponent) = > class extends WrappedComponent{
 
 - 控制state
 
+高阶组件可以读取、修改或删除WrappedComponent实例中的state，如果有需要，也可以增加state。但这样做，会使组件的内部状态混乱。大部分高阶组件都应该限制读取或增加state，尤其是后者，可以通过重新命名state，以防止混淆。
 
+### 三、额外的注意点
 
-### 总结和建议
+1. 组件命名
+
+当包裹一个高阶组件时，我们失去了原始WrappedComponents的displayName，而组件名字是方便我们开发与调试的重要属性。
+
+我们参考 react-redux库中的实现：
+
+```
+class HOC extends ...{
+ static displayName = `HOC(${getDisplayName(WrappedComponent)})`;
+}
+//getDisplayName方法可以这样实现：
+function getDisplayName（WrappedComponent){
+	return WrappedComponent.displayName || 
+			WrappedComponent.name ||
+			'Component';
+}
+```
+或者可以使用recompose库，他已经帮我们实现了对应的方法。
+
+2. 组件参数
+
+这就是一开始我提到过的一点，如何通过柯里化构建更加精确的高阶组件
+
+```
+function HOCFactoryFactory(...params){
+	//可以做一些改变params的事情
+	return class HOCFactory(WrappedComponent){
+		remder(){
+			return <WrappedComponent {...this.props} />
+		}
+	}
+}
+```
+
+当我们使用时，通过两次传参构建更为精准的高阶组件
+
+`HOCFactoryFactory(params)(WrappedComponent)`
+
+这也是利用了函数式编程的特性。
+
+### 四、总结和建议
 
 - 第一次看到`HOC`这个概念，很大一部分人是懵逼的，被这个名词吓到了，以为它是很难得，我也不认为在你没有运用HOC之前初次看完这篇文章就能够拨云见日。
 - 吸收`HOC`最好的时机是，当你的组件代码的复用性出现问题，出现了大量没必要的冗余可复用功能性代码时候，你就可以反过来看看`HOC`，一段蹩脚的英文 *when need now，the best time*。
+- 高阶组件的出现，代表了react声明式编程的思想方向，我们通过组建组合开发，降低了组件的复杂度，也达到了代码更大的复用度。
 
 
 
