@@ -49,6 +49,41 @@ const MyContainer = (WrappedComponent) =>class extends Components{
 
 2. 反向继承
 
+反向继承是通过class继承特性来实现高阶组件的一种方式，我们通过简单的代码来理解一下：
+
+```
+const MyContainer = (WrappedComponent) = > class extends WappedComponent {
+	render (){
+		return super.render();
+	}
+}
+```
+这种方法和属性代理不太一样，它通过继承WrappedComponent来实现，方法可以通过super来顺序调用。在继承方法中，高阶组件可以使用传入组件的引用，这意味着它可以使用传入组件的state、props、生命周期和render方法。
+
+它有两个比较大的特点。
+
+- 渲染劫持
+
+渲染劫持就是指高阶组件可以控制传入组件的渲染过程，并渲染各种各样的结果。在这个过程中我们可以对输出的结果进行读取、增加、修改、删除props，或读取或修改React元素树，或条件显示元素树，又或是用样式控制包裹元素树。
+
+```
+const MyContainer = (WrappedComponent) = > class extends WrappedComponent{
+	render(){
+		const elementsTree = super.render();
+		let newProps={};
+		if(elementsTree && elementsTree.type === 'input'){
+			newProps = {value:'may the force be with you'};
+		}
+		const props =  Object.assign({},elementsTree.props,newProps);
+		const newElmentsTree = React.cloneElement(elementsTree, props, elmentsTree.props.children);
+		
+	}
+}
+```
+在这个例子中，WrappedComponent的渲染结果中，顶层的input组件的value被改写成may the force be with you。因为，我们在高阶函数的反向继承实现中可以翻转元素树，改变元素树中的props。
+
+- 控制state
+
 
 
 ### 总结和建议
