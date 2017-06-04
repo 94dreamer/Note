@@ -1,7 +1,5 @@
 # ES6之我见
 
-![http](https://github.com/94dreamer/Note/blob/master/ES6之我见/img/)
-
 > 本文依据阮一峰老师的[《ECMAScript 6入门》](http://es6.ruanyifeng.com/)一书作为参考书，结合网络共享资源对ES6标准诸多特性进行一一分析，或跳过一些理解不到位的。
 
 ### 一、 为什么要学习ES6？
