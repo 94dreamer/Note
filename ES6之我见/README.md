@@ -4,23 +4,55 @@
 
 > 本文依据阮一峰老师的[《ECMAScript 6入门》](http://es6.ruanyifeng.com/)一书作为参考书，结合网络共享资源对ES6标准诸多特性进行一一分析，或跳过一些理解不到位的。
 
-#### 1. 为什么要学习ES6？
+### 一、 为什么要学习ES6？
+
 - 因为ES6是官方标准，是未来浏览器支持方向。
 - 大量框架新版本都已经广泛使用ES6的语法（React、Angular、Vue）。
 - Babel的出现让ES6提前登上舞台。
-- 便捷的语法糖和新特性解决了js的很多年尿性问题。
+- 便捷的语法糖和新特性解决了js的类库引用。
 
-#### 2. 我们首先需要掌握babel的使用
+### 二、 我们首先需要掌握babel的使用
 
-[babel配置.md](https://github.com/94dreamer/Note/blob/master/Redux%E7%9A%84subscribe%E7%9A%84%E5%9B%B0%E5%A2%83/babel%E9%85%8D%E7%BD%AE.md)
+因为各大浏览器和运行环境对ES6的支持情况参差不齐，一般的产品来讲对浏览器兼容性存在一定要求，所以我们不能‘裸写’ES6代码发布上线。在实际项目开发中，需要降级为ES5语法以兼容各平台。
 
+我们选择使用`babel`作为编译工具完成这个事情。 
+[我的babel配置.md](https://github.com/94dreamer/Note/blob/master/Redux%E7%9A%84subscribe%E7%9A%84%E5%9B%B0%E5%A2%83/babel%E9%85%8D%E7%BD%AE.md)。
 
-#### 3. let和const命令
+- babel-polyfill
+
+	需要说明的是*Babel默认只转换新的JavaScript语法，而不转换新的API*。
+	
+	比如：Babel可以主动编译 let，const等特性，但是诸如Iterator、Generator、Reflect、Promise等全局对象，或者数组的find这些新方法并不会得到编译。如果我们想要Babel主动转换他们，就需要使用`babel-polyfill`，同时要保证这个polyfill在你的所有其他脚本之前。同时，因为编译产出ES5代码，所以我们又需要加入ES5-shim，ES5-sham在所有代码之前。
+	
+	实际情况下，我们放弃了使用babel-polyfill，这是出于减少JS引用的考虑。其次，ES6新增的方法我们并不一定使用到，ES6新特性被广泛使用的大多是let，const，结构，箭头函数等，这些使用Babel默认的编译就可以达到要求了。对于Promise这种广泛使用的特性，我们引入单独的polyfill来处理。
+
+- babel-runtime
+
+	babel-runtime是为了减少重复代码而生的。Babel编译生成的代码，可能把一些方法的编译代码，在每个使用处生成一份重复的。这种冗余是我们不能够忍受的。
+	
+	babel-runtime能够把这些工具函数的代码转换成require语句。
+	
+	`reuire('babel-runtime/helpers/classCallCheck');`
+
+### 三、广泛使用的ES6特性
+
+- 默认参数
+- 模版表达式
+- 多行字符串
+- 解构赋值
+- 改进的对象表达式
+- 箭头函数
+- Promise
+- 块级作用域let和const
+- 类class
+- 模块化
+
+#### 1. let和const命令
 
 说老实话，let和const的出现一定程度上增大了我们的选择难度。  
 现在块级作用域的变量我们用let，而不变的常用我们用const。var反而有点无所适从了。
 
-#### 4. 变量的解构赋值
+#### 2. 变量的解构赋值
 
 这是我觉得最方便也是最常用的ES6特性之一了。
   
@@ -84,7 +116,7 @@ for(let [key,vlaue] of map){
 const react,{Component,PropTypes} from 'react';
 ```
 
-#### 5. 字符串的扩展
+#### 3. 字符串的扩展
 
 (1) 基本包装类型方法
 `includes()`	返回布尔值，表示是否找到了参数字符串
@@ -110,9 +142,9 @@ Yes, I'm fine.`
 
 (3) 标签模版
 
-#### 6. 正则的扩展
+#### 4. 正则的扩展
 
-#### 7. 数值的扩展
+#### 5. 数值的扩展
 
 (1) 扩展方法
 
@@ -135,7 +167,7 @@ a **=3;
 //等于a= a * a * a； 
 ```
 
-#### 8. 数组的扩展
+#### 6. 数组的扩展
 
 (1) `Array.from()` 转数组
 
@@ -152,7 +184,7 @@ a **=3;
 
 (6) `entries(),keys(),values()` 分别返回键值对、键名、键值的遍历器。
 
-#### 9. 函数的扩展
+#### 7. 函数的扩展
 
 (1)函数参数的默认值
 
@@ -204,7 +236,7 @@ bar.bind(foo);
 
 允许函数的最后一个参数有尾逗号。
 
-#### 10. 对象的扩展
+#### 8. 对象的扩展
 
 (1) 属性的简洁表示法
 
@@ -213,17 +245,17 @@ bar.bind(foo);
 (2) Object.assign()
 
 
-#### 11. Symbol
+#### 9. Symbol
 
 新的原始类型，表示独一无二的值。
 
-#### 12. Set和Map数据结构
+#### 10. Set和Map数据结构
 
-#### 13. Proxy
+#### 11. Proxy
 
 Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”，即对编程语言进行编程。
 
-#### 14. Reflect
+#### 12. Reflect
 
 Reflect 也是ES6为了操作对象而提供的新API。
 
@@ -232,18 +264,16 @@ Reflect 也是ES6为了操作对象而提供的新API。
 (3) 让Object操作都变成函数行为。
 (4) Reflect对象的方法与Proxy对象的方法一一对应。
 
-#### 15. Iterator和for...of循环
+#### 13. Iterator和for...of循环
 
 
 
-#### 16. Generator函数
+#### 14. Generator函数
 
 Generator函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同。
 Generator函数是一个状态机，封装了多个内部状态。
 
-
-
-#### 17. Promise对象
+#### 15. Promise对象
 
 (1) 对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：Pending、Resolved、Rejected。
 (2) 一旦状态改变，就不会再变，任何时候都可以得到这个结果。
@@ -262,13 +292,13 @@ var promise = new Promise(function(resolve,reject){
 })
 ```
 
-#### 18.异步操作和Async函数
+#### 16.异步操作和Async函数
 
-#### 19.Class
+#### 17.Class
 
-#### 20.Decorator
+#### 18.Decorator
 
-#### 21.Module
+#### 19.Module
 
 早在大概7、8年前，因为Web应用的复杂度上升，就已经出了JS的模块化思想，主要分为两派：AMD、CMD。
 
