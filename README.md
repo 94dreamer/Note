@@ -26,7 +26,7 @@
 
 8. 前端技术体系梳理／前端架构设计
  
->时间戳： 2017年2月12日 02:34 星期日  
+>时间戳： 2017年6月30日 02:34
 
 - [Sourcetree, Git GUI](https://www.sourcetreeapp.com/)
 - [编程教学视频网站(英文)](https://www.codeschool.com/)
@@ -35,6 +35,8 @@
 - [Udacity](https://classroom.udacity.com/)
 
 ##书单
+
+* JavaScript异步编程
 * 前端架构设计
 * 现代前端技术解析
 * 深入React技术栈
