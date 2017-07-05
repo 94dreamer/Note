@@ -58,4 +58,30 @@ while (new Date()-start<1000){};
 
 #### 2. 任务队列
 
-调用setTimeout时候，
+调用setTimeout时候，会有一个延时事件排入队列。然后setTimeout调用之后的那行代码运行，接着是再下一行代码，知道在没有任何代码。这时JavaScript虚拟机才会问："队列里都有谁啊？"
+
+如果队列里存在可以'执行'的事件，则虚拟机会挑选队列里最早可以'执行'的事件，并调用此事件的处理器（譬如传给setTimeout的那个函数）。事件处理器返回后，我们又回到队列处。
+
+输入事件的工作方式完全一样：用户单击一个已附加有单击事件处理器的DOM元素时，会有一个单击事件排入队列。但是，该单击事件处理器要等到当前所有运行的代码均已结束后（可能还要等其他此前以排队的事件也依次结束）才会执行。因此，使用JavaScript的那些网页一不小心就会变得毫无反应。
+
+
+```
+<div id="a">a</div>
+<div id="b">b</div>
+<script>
+  var time=null;
+  a.onclick=function(){
+    var start=time=new Date();
+    console.log(time);
+    while (new Date()-start<3000){};
+  }
+
+  b.onclick=function(){
+    console.log(new Date()-time);
+  }
+</script>
+```
+快速连续点击a，b时，b的绑定事件有了卡顿效果，这是因为a的绑定事件的触发同步代码还没有运行完，只有等代码运行完毕，才回去队列检查是否有新的回调函数可以执行。
+
+
+

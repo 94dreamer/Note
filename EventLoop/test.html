@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="a">a</div>
+<div id="b">b</div>
+<script>
+  var time=null;
+  a.onclick=function(){
+    var start=time=new Date();
+    console.log(time);
+    while (new Date()-start<3000){};
+  }
+
+  b.onclick=function(){
+    console.log(new Date()-time);
+  }
+</script>
+</body>
+</html>
