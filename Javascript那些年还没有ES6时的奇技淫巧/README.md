@@ -16,6 +16,15 @@
 
 1. 取整 
 
+```
+var a = ~~1.2; //1
+```
+还可以用位右移符>>
+
+```
+var a = 3.4>>0; //3 
+```
+
 2. 多行字符串
 
 ```
@@ -68,25 +77,46 @@ var temp = Array(200).join("leo");
 这种代替可能会让第一次看到的你觉得脑洞大开：这样玩也行？对的，case后面跟上Boolean判断而不是具体值。
 
 ```
-function getCategory(age) {
-    var category = "";
-    switch (true) {
-        case isNaN(age):
-            category = "not an age";
-            break;
-        case (age >= 50):
-            category = "Old";
-            break;
-        case (age <= 20):
-            category = "Baby";
-            break;
-        default:
-            category = "Young";
-            break;
-    }
-    return category;
+switch (true) {
+    case (a > 10):
+        do_something();
+        break;
+    case (a < 100):
+        others();
+        break;
+    default:
+        break;
 }
-getCategory(5);
 ```
 
-5. 
+5. 截取数组
+
+```
+var arr = [1,2,3,4,5,6];
+arr = arr.slice(0,3);
+```
+我们可以利用length在这种情况
+```
+var arr = [1,2,3,4,5,6];
+arr.length=3;
+```
+
+6. 获取数组中的最大值和最小值
+
+```
+var numbers = [ 5, 458, 120, -215, 228, 400, 122205, -85411 ];
+var maxInNumbers = Math.max.apply(Math, numbers);
+var minInNumbers = Math.min.apply(Math, numbers);
+```
+
+7. 日期转数字
+
+```angular2html
+var time1 = new Date().getTime();
+```
+
+我们可以这样
+
+```angular2html
+var time2 = + new Date();
+```

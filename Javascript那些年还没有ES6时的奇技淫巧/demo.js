@@ -1,19 +1,10 @@
-function getCategory(age) {
-    var category = "";
-    switch (true) {
-        case isNaN(age):
-            category = "not an age";
-            break;
-        case (age >= 50):
-            category = "Old";
-            break;
-        case (age <= 20):
-            category = "Baby";
-            break;
-        default:
-            category = "Young";
-            break;
-    }
-    return category;
+switch (true) {
+    case (a > 10):
+        do_something();
+        break;
+    case (a < 100):
+        others();
+        break;
+    default:
+        break;
 }
-getCategory(5);
