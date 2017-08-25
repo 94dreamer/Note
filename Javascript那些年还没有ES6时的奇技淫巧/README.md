@@ -8,13 +8,21 @@
 
 #### 目录
 
-- [1. 取整]()
-- [2. 多行字符串](#多行字符串)
-- [3. 快速输出重复字符串](#)
+- [1. 取整](#1. 取整)
+- [2. 多行字符串](#2. 多行字符串)
+- [3. 快速输出重复字符串](#3. 快速输出重复字符串)
+- [4. 用`switch case`代替`if else`](#4. 用`switch case`代替`if else`)
+- [5. 截取数组](#5. 截取数组)
+- [6. 获取数组中的最大值和最小值](#6. 获取数组中的最大值和最小值)
+- [7. 日期转数字](#7. 日期转数字)
+- [8. 用 && || ?: , 节省代码行数](#8. 用 && || ?: , 节省代码行数)
+- [9. 隐式转换](#9. 隐式转换)
+- [10. 利用对象数组取值、方法](#10. 利用对象数组取值、方法)
+
 
 ---
 
-1. 取整 
+#### 1. 取整
 
 ```
 var a = ~~1.2; //1
@@ -25,7 +33,7 @@ var a = ~~1.2; //1
 var a = 3.4>>0; //3 
 ```
 
-2. 多行字符串
+#### 2. 多行字符串
 
 ```
 var temp1 = "<div>" +
@@ -55,7 +63,7 @@ var temp3 = "<div>\
  </div>";
 ```
 
-3. 快速输出重复字符串
+#### 3. 快速输出重复字符串
 
 我们笨办法是
 
@@ -72,7 +80,7 @@ console.log(temp)
 var temp = Array(200).join("leo");
 ```
 
-4. 用`switch case`代替`if else`
+#### 4. 用`switch case`代替`if else`
 
 这种代替可能会让第一次看到的你觉得脑洞大开：这样玩也行？对的，case后面跟上Boolean判断而不是具体值。
 
@@ -89,7 +97,7 @@ switch (true) {
 }
 ```
 
-5. 截取数组
+#### 5. 截取数组
 
 ```
 var arr = [1,2,3,4,5,6];
@@ -101,7 +109,7 @@ var arr = [1,2,3,4,5,6];
 arr.length=3;
 ```
 
-6. 获取数组中的最大值和最小值
+#### 6. 获取数组中的最大值和最小值
 
 ```
 var numbers = [ 5, 458, 120, -215, 228, 400, 122205, -85411 ];
@@ -109,14 +117,60 @@ var maxInNumbers = Math.max.apply(Math, numbers);
 var minInNumbers = Math.min.apply(Math, numbers);
 ```
 
-7. 日期转数字
+#### 7. 日期转数字
 
-```angular2html
+```
 var time1 = new Date().getTime();
 ```
 
 我们可以这样
 
-```angular2html
+```
 var time2 = + new Date();
+```
+
+#### 8. 用 && || ?: , 节省代码行数
+
+用多了会被打系列
+
+```
+data = {
+        currpage: (obj.role == 4 || obj.role == 7) ? ++_this.curpage_store : ++_this.curpage_agent,
+        ajaxType: 'GET'
+}
+
+
+!localData[type][number] && (localData[type][number] = data, localStorage.setItem(this.jobid, JSON.stringify(localData)));
+
+!$allCity.hasClass('active') ?
+			($(this).addClass('active'), $allCity.addClass('active'), lastPos = xk_www.$bd.scrollTop()) :
+			($(this).removeClass('active'), $allCity.removeClass('active'), lastPos != null && xk_www.$bd.animate({
+				scrollTop: lastPos
+			}));
+```
+
+#### 9. 隐式转换
+
+```
+data.isDeep == ‘0’;	// 有时候返回的deep可能为0可能为“0”
+data.isDeep > 0 ;
+...
+
+```
+
+
+#### 10. 利用对象数组取值、方法
+
+```
+const config={
+    1:"周一",
+    2:"周二",
+    3:"周三",
+    4:"周四",
+    5:"周五",
+    6:"周六",
+    7:"周日",
+};
+
+const 
 ```
