@@ -2,6 +2,16 @@
 
 ### 我的个人博客网址 [94dreamer.com](http://94dreamer.com)
 
+> 2017年下半年的学习计划
+
+1. `git`
+2. `Linux`学习
+3. `Nginx`
+4. 前端、`Node`中间层与`Java`服务器体系
+5. `React`虚拟 DOM 实现
+6. `Webpack`的`loader`实现
+7. host => nginx => 网关 => 服务器
+
 > 2017年上半年的学习计划
 
 1. `HTTP`系统学习和总结
