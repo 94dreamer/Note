@@ -80,8 +80,9 @@ console.log(temp)
 在以前我们可以这样抖机灵：
 
 ```
-var temp = Array(200).join("leo");
+var temp = Array(201).join("leo");
 ```
+> 经过提醒，此处用该把200换成了201。
 
 #### 4. 用`switch case`代替`if else`（脑洞指数： ⭐️⭐️⭐️⭐️）
 
