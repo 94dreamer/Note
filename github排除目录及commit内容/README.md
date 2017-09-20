@@ -33,7 +33,7 @@ doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 ```
 ### 尴尬的是，有时候因为遗漏添加了某个文件的ignore。
 就是已经commit了，再加入gitignore是无效的，所以这个时候需要删除下缓存。
-![commit](https://github.com/94dreamer/Note/blob/master/github排除目录及commit内容/img/commit.png)
+![commit](./img/commit.png)
 ## 我们需要做以下操作：
 1. git rm -r -n --cached  /node_modules      //-n：加上这个参数，执行命令时，是不会删除任何文件，而是展示此命令要删除的文件列表预览。
 

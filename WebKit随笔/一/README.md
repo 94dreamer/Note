@@ -70,7 +70,3 @@
 4. WebCore具体包括浏览器加载和渲染网页的基础部分，比如HTML解释器、CSS解释器、SVG、DOM、渲染树等。JavaScriptCore引擎是WebKit的默认JavaScript引擎，事实上，WebKit对JS引擎并不高度聚合，在Google的Chromium中，它被替换成了V8引擎。
 5. Webkit Ports是差异各种操作系统和浏览器所产生的可自设计部分，其中包括硬件加速架构、网络栈、视频解码、图片解码等。
 6. 在WebCore和WebKit Ports之上是对外暴露的嵌入式编程接口。这些接口提供给浏览器调用（并不绝对只是浏览器）。
-
-
-
-
