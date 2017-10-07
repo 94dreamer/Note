@@ -2,15 +2,6 @@
 
 以一个git新手的角度来阐述项目中git的使用，理解git的基本原理，总结出操作手册，期待能以这篇记录做一次轻量级的分享。
 
-## 目录
-* [为什么 Git](#为什么 Git)
-	* [SVN 的痛点](#SVN 的痛点)
-	* [Git 的诞生](#Git 的诞生)
-* [介绍 Git](#介绍 Git)
-	* [主分支 Mater](#主分支 Mater)  
-
-
-
 ### 为什么 Git
 #### SVN 的痛点
 `svn`是典型的集中式的版本控制系统，版本库集中存放在中央服务器，可以多人共同维护一份中央服务器的代码，在我过去使用`svn`这种集中式的版本控制系统，有时候总能感受到多人协作时对整体项目的不可控风险的痛点，SVN的处理方式在我看来略有欠缺。  
@@ -210,24 +201,223 @@ git merge --no--ff -m ’merge width --no--ff‘ dev
 
 ### Bug分支
 
+有时候我们在一个分支开发功能，任务还没有完成，需要立即切换分支修复master问题，我们又不想把已改内容作为一次commit，幸好，Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
 
+```
+git stash
+```
 
-###
+完成了工作后，我们切回之前未完成工作的分支，对于之前暂存stash内容，首先可以查看：
+```
+git stash list
+```
+我们可以得知工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
+```
+git stash apply
+```
+这种方式恢复，stash内容并不删除，你需要用
+```
+git stash drop
+```
+这种方式，恢复的同时把stash内容也删了，此时再用`git stash list`查看，就看不到任何stash内容了。
 
+### Feature分支
 
+软件开发中，总有无穷无尽的新的功能要不断添加进来。
 
+添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，所以，每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。
 
+```
+git checkout -b feature/0707
+```
+我们从当前分支切出一个feature分支，开始进行开发：
+```
+git add .
+git status
+git commit -m 'xx feature'
+```
+开发完毕，切回`dev`，准备合并：
 
+```
+git checkout dev
+```
+然后我们再进行合并代码操作即可。
+但是，有一个情况，就在此时，接到上级命令，因经费不足，新功能必须取消！虽然白干了，但是这个分支还是必须就地销毁：
+```
+$ git branch -d feature/0707
 
+error: The branch 'feature/0707' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D feature/0707'.
+```
 
+销毁分支失败，Git提醒，`feature/0707`分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用命令
+```
+$ git branch -D feature/0707
+```
 
+### 多人协作
 
+当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
 
+要查看远程库的信息，用git remote：
+```
+$ git remote
+origin
+```
+或者，用`git remote -v`显示更详细的信息
 
+```
+$ git remote -v
+origin  git@github.com:michaelliao/learngit.git (fetch)
+origin  git@github.com:michaelliao/learngit.git (push)
+```
+上面显示了可以抓取和推送的`origin`的地址。如果没有推送权限，就看不到push的地址。
 
+### 推送分支
 
+推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
+```
+$ git push origin master
+```
+如果要推送当前分支，可以省略掉分支名也可。
 
+```
+$ git push
+```
 
+但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
+
+- master分支是主分支，因此要时刻与远程同步；
+- dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+- bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+- feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
+
+总之，就是在Git中，分支完全可以在本地自己藏着玩，是否推送，视你的心情而定！
+
+#### 多人协作
+
+多人的工作模式通常是这样：
+
+首先，可以试图用`git push origin branch-name`推送自己的修改；
+
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+
+如果合并有冲突，则解决冲突，并在本地提交；
+
+没有冲突或者解决掉冲突后，再用`git push origin branch-name`推送就能成功！
+
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream branch-name origin/branch-name`。
+
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+> 小结
+
+查看远程库信息，使用`git remote -v`；
+
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+
+从本地推送分支，使用`git push origin branch-name`，如果推送失败，先用`git pull`抓取远程的新提交；
+
+在本地创建和远程分支对应的分支，使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致；
+
+建立本地分支和远程分支的关联，使用`git branch --set-upstream branch-name origin/branch-name`；
+
+从远程抓取分支，使用`git pull`，如果有冲突，要先处理冲突。
+
+### 标签管理
+
+why？我们为什么需要标签？因为git的commit不便记忆，是机器标示，是反人类的。。。而我们有时候对于重要版本需要精准的人类语言来描述和记忆版本。
+
+在Git中打标签非常简单，首先，切换到需要打标签的分支上：
+```
+$ git branch
+$ git checkout master
+```
+然后，使用命令`git tag <name>`打上一个新标签
+
+```
+$ git tag v1.0
+```
+可以用命令`git tag`查看所有标签
+```
+$ git tag
+v1.0
+```
+
+默认标签是打在最新提交的commit上的。
+
+有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？方法是找到历史提交的commit id，然后打上就可以了：
+
+```
+$ git log --pretty=online --abbrev-commit
+```
+
+在原本`git tag`命令的后面跟上指定的`commit id`就可以
+```
+$ git tag v1.1 9f294s1
+```
+
+此时再用`git tag`查看标签：
+
+```
+$ git tag
+v1.0
+v1.1
+```
+
+注意，标签不是按时间顺序列出，而是按字母排序的。可以用`git show <tagname>`查看标签信息：
+
+```
+$ git show v1.1
+```
+
+还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+
+```
+$ git tag -a v1.2 -m "version 1.1 released" 3628164
+```
+
+小结
+
+- 命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+- git tag -a <tagname> -m "blablabla..."可以指定标签信息；
+- git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
+- 命令git tag可以查看所有标签。
+
+#### 操作标签
+
+```
+$ git tag -d v1.1
+```
+因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。
+
+如果要推送某个标签到远程，使用命令`git push origin <tagname>`
+
+```
+$ git push origin v1.0
+```
+或者，一次性推送全部尚未推送到远程的本地标签：
+
+```
+$ git push origin --tags
+```
+
+如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
+
+```
+$ git tag -d v1.0
+```
+然后，从远程删除。删除命令也是push，但是格式如下：
+```
+$ git push origin :refs/tags/v1.0
+```
+
+小结
+
+- 命令git push origin <tagname>可以推送一个本地标签；
+- 命令git push origin --tags可以推送全部未推送过的本地标签；
+- 命令git tag -d <tagname>可以删除一个本地标签；
+- 命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
 
 
 
