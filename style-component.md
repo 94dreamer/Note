@@ -1,3 +1,257 @@
+# Styled-Components
+
+> 它是通过JavaScript改变CSS编写方式的解决方案之一，从根本上解决常规CSS编写的一些弊端。
+> 通过JavaScript来为CSS赋能，我们能达到常规CSS所不好处理的逻辑复杂、函数方法、复用、避免干扰。
+> 尽管像SASS、LESS这种预处理语言添加了很多用用的特性，但是他们依旧没有对改变CSS的混乱有太大的帮助。因此组织工作交给了像 BEM这样的方法，虽然比较有用，但是它完全是自选方案，不能被强制应用在语言或者工具层面。
+> 他搭配React可能将模块化走向一个更高的高度，样式书写将直接依附在JSX上面，HTML、CSS、JS三者再次内聚。
+
+### 基本
+
+#### 安装
+
+```
+npm install --save styled-components
+```
+
+除了npm安装使用模块化加载包之外，也支持`UMD`格式直接加载脚本文件。
+
+```
+<script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+```
+
+#### 入门
+
+`styled-components`使用标签模板来对组件进行样式化。
+
+它移除了组件和样式之间的映射。这意味着，当你定义你的样式时，你实际上创造了一个正常的React组件，你的样式也附在它上面。
+
+这个例子创建了两个简单的组件，一个容器和一个标题，并附加了一些样式。
+
+```
+// Create a Title component that'll render an <h1> tag with some styles
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+// Create a Wrapper component that'll render a <section> tag with some styles
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+`;
+
+// Use Title and Wrapper like any other React component – except they're styled!
+render(
+  <Wrapper>
+    <Title>
+      Hello World, this is my first styled component!
+    </Title>
+  </Wrapper>
+);
+```
+
+> 注意
+> CSS规则会自动添加浏览器厂商前缀，我们不必考虑它。
+
+
+#### 透传props
+
+`styled-components`会透传所有的props属性。
+
+```
+// Create an Input component that'll render an <input> tag with some styles
+const Input = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  color: palevioletred;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+`;
+
+// Render a styled text input with a placeholder of "@mxstbr", and one with a value of "@geelen"
+render(
+  <div>
+    <Input placeholder="@mxstbr" type="text" />
+    <Input value="@geelen" type="text" />
+  </div>
+);
+```
+
+#### 基于props做样式判断
+
+模板标签的函数插值能拿到样式组件的props，可以据此调整我们的样式规则。
+
+```
+const Button = styled.button`
+  /* Adapt the colours based on primary prop */
+  background: ${props => props.primary ? 'palevioletred' : 'white'};
+  color: ${props => props.primary ? 'white' : 'palevioletred'};
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+render(
+  <div>
+    <Button>Normal</Button>
+    <Button primary>Primary</Button>
+  </div>
+);
+```
+
+#### 样式化任意组件
+
+```
+// This could be react-router's Link for example
+const Link = ({ className, children }) => (
+  <a className={className}>
+    {children}
+  </a>
+)
+
+const StyledLink = styled(Link)`
+  color: palevioletred;
+  font-weight: bold;
+`;
+
+render(
+  <div>
+    <Link>Unstyled, boring Link</Link>
+    <br />
+    <StyledLink>Styled, exciting Link</StyledLink>
+  </div>
+);
+```
+
+#### 扩展样式
+
+我们有时候需要在我们的样式组件上做一点扩展，添加一些额外的样式：
+需要注意的是`.extend`在对样式组件有效，如果是其他的React组件，需要用`styled`样式化一下。
+
+```
+// The Button from the last section without the interpolations
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+// We're extending Button with some extra styles
+const TomatoButton = Button.extend`
+  color: tomato;
+  border-color: tomato;
+`;
+
+render(
+  <div>
+    <Button>Normal Button</Button>
+    <TomatoButton>Tomato Button</TomatoButton>
+  </div>
+);
+```
+
+在极少特殊情况下，我们可能需要更改样式组件的标签类型。我们有一个特别的API，`withComponent`可以扩展样式和替换标签：
+
+```
+const Button = styled.button`
+  display: inline-block;
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
+// We're replacing the <button> tag with an <a> tag, but reuse all the same styles
+const Link = Button.withComponent('a')
+
+// Use .withComponent together with .extend to both change the tag and use additional styles
+const TomatoLink = Link.extend`
+  color: tomato;
+  border-color: tomato;
+`;
+
+render(
+  <div>
+    <Button>Normal Button</Button>
+    <Link>Normal Link</Link>
+    <TomatoLink>Tomato Link</TomatoLink>
+  </div>
+);
+```
+
+#### 添加attr
+
+我们可以使用`attrs`API来为样式组件添加一些attr属性，它们也可以通过标签模板插值函数拿到props传值。
+
+```
+const Input = styled.input.attrs({
+  // we can define static props
+  type: 'password',
+
+  // or we can define dynamic ones
+  margin: props => props.size || '1em',
+  padding: props => props.size || '1em'
+})`
+  color: palevioletred;
+  font-size: 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+
+  /* here we use the dynamically computed props */
+  margin: ${props => props.margin};
+  padding: ${props => props.padding};
+`;
+
+render(
+  <div>
+    <Input placeholder="A small text input" size="1em" />
+    <br />
+    <Input placeholder="A bigger text input" size="2em" />
+  </div>
+);
+```
+
+#### 动画
+
+带有@keyframes的CSS animations，一般来说会产生复用。`styled-components`暴露了一个`keyframes`的API，我们使用它产生一个可以复用的变量。这样，我们在书写css样式的时候使用JavaScript的功能，为CSS附能，并且避免了名称冲突。
+
+```
+// keyframes returns a unique name based on a hash of the contents of the keyframes
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+// Here we create a component that will rotate everything we pass in over two seconds
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate360} 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+`;
+
+render(
+  <Rotate>&lt; 💅 &gt;</Rotate>
+);
+```
+
+#### 支持 React Native
+
 ### 高级特性
 
 #### Theming
@@ -344,6 +598,9 @@ const B = styled.div`
 
 在模板文本中写入CSS时丢失的一个东西是语法高亮显示。我们正在努力在所有编辑器中实现正确的语法高亮显示。支持大部分编辑器包括Visual Studio Code、WebStorm。
 
+#### 
+
+
 ### 总结
 
 下面简单总结一下 styled-components 在开发中的表现：
@@ -357,6 +614,48 @@ const B = styled.div`
 - 一个让styled-components很容易被接受的特性：当他被怀疑的时候，你同样可以使用你熟悉的方法去使用它！
 
 当然，styled-components 还有一些优秀的特性，比如服务端渲染和 React Native 的支持。
+
+---
+---
+
+### 题外：styled-components的魔法
+
+如果你从来没看见过`styled-components`，下面是一个简单的样式组件的例子：
+
+```
+const Button = styled.button`
+  background-color: papayawhip;
+  border-radius: 3px;
+  color: palevioletred;
+`
+``` 
+
+现在可以像使用普通React组件一样渲染使用。
+
+```
+<Button>Hi Dad!</Button>
+```
+
+那么，这是怎么工作的呢？这个过程中到底发生了什么魔法？
+
+#### 标签模板
+
+实际上，` style.button`` `是JavaScript的新语法特性，属于ES6的标签模板功能。
+
+本质上，` styled.button`` `和`styled.button()`是一样的。他们的差异只在传递参数时就变得可见了。
+
+styled-components利用模板字符串的用处在于可以给内部props赋值。
+
+```
+const Button = styled.button`
+  font-size: ${props => props.primary ? '2em' : '1em'};
+`
+// font-size: 2em;
+<Button primary />
+```
+
+
+
 
 
 
