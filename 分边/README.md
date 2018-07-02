@@ -34,5 +34,5 @@ Array.prototype.shuffle = function() {
 	return '左边：'+input.slice(0,input.length/2).toString()+'\n右边：'+input.slice(input.length/2).toString();
 }
 var tempString = '深圳湾,广渠门外,小平湖,倒马桶,仕兰,沙湾,梅溪湖,青葡萄,金兰,呼伦贝尔';
-console.log(tempArray.split(",")shuffle()); 
+console.log(tempString.split(",").shuffle()); 
 ```
