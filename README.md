@@ -2,6 +2,13 @@
 
 ### 我的个人博客网址 [94dreamer.com](http://94dreamer.com)
 
+> 2019年上半年的学习计划
+
+1. `Webpack`源码
+2. 网络
+3. 算法
+4. 计算机组成原理
+
 > 2018年下半年的学习计划
 
 1. `Nest.js`
@@ -60,6 +67,17 @@
 - [Udacity](https://classroom.udacity.com/)
 
 ## 书单
+
+#### 2019年
+
+* 变量
+* css世界
+* css揭秘
+* JavaScript函数式编程指南
+* Learning Typescript
+* 高能量姿势
+* 我的第一本算法书
+* 程序是怎样跑起来的
 
 #### 2018年
 
