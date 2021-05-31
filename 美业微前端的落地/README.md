@@ -201,7 +201,7 @@ CSS 样式隔离：当基座应用、子应用同屏渲染时，就可能会有�
 
 
 #### 子应用如何推送打包完成的 cdn 地址给 Apollo
-![apollo界面](./imgs/apollo界面.png)
+![apollo页面](./imgs/apollo页面.png)
 1. 获取打包完成的产物的 JSON，获取入口文件 Hash，和当前项目的基础信息。
 2. 基于上述配置生成内容，然后调用 Apollo 平台开放的 API 上传到 Apollo。
 
