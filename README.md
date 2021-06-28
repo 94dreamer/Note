@@ -55,14 +55,14 @@
 
 ### 2016年
 - [大话HTTP状态码](./A2016/大话HTTP状态码)
-- [了解Chrome扩展程序开发](./2016/了解Chrome扩展程序开发)
-- [如何理解Web语义化](./2016/如何理解Web语义化)
-- [ES6之我见](./2016/ES6之我见)
-- [github排除目录及commit内容](./2016/github排除目录及commit内容)
-- [HTML5新标签—语义化的尖刀](./2016/HTML5新标签—语义化的尖刀)
-- [HTTP之我见](./2016/HTTP之我见)
-- [redux-devtools全攻略](./2016/redux-devtools全攻略)
-- [Redux的subscribe的困境](./2016/Redux的subscribe的困境)
+- [了解Chrome扩展程序开发](./A2016/了解Chrome扩展程序开发)
+- [如何理解Web语义化](./A2016/如何理解Web语义化)
+- [ES6之我见](./A2016/ES6之我见)
+- [github排除目录及commit内容](./A2016/github排除目录及commit内容)
+- [HTML5新标签—语义化的尖刀](./A2016/HTML5新标签—语义化的尖刀)
+- [HTTP之我见](./A2016/HTTP之我见)
+- [redux-devtools全攻略](./A2016/redux-devtools全攻略)
+- [Redux的subscribe的困境](./A2016/Redux的subscribe的困境)
 
 ### 2015年
 - [百度地图Javascript API实践小结](./A2015)
