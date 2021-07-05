@@ -1,10 +1,14 @@
-# React更新的四阶段
+# React更新的阶段
+render 触发
 
-## 调度
+workLoop 调度
 
-## Commit
+performUnitOfWork 执行切片任务
 
-## 协调
+updateFunctionComponent 执行hooks
 
-## 渲染
+reconcileChildren 调和
 
+commitRoot 渲染
+
+commitWork  循环fiber插入dom
