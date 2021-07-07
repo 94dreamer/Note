@@ -7,7 +7,7 @@ performUnitOfWork 执行切片任务
 
 updateFunctionComponent 执行hooks
 
-reconcileChildren 调和
+reconcileChildren 协调
 
 commitRoot 渲染
 
