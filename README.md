@@ -11,21 +11,21 @@
 ## 博客存档
 ### 2021年
 - [美业微前端的落地](./A2021/美业微前端的落地)
-- [一次内存泄露带来的Vue SSR重构](./A2021/一次内存泄露带来的VueSSR重构)
+- [一次内存泄露带来的VueSSR重构](./A2021/一次内存泄露带来的VueSSR重构)
 
 ### 2020年
-- [美业前端：持续标准化Code Review](./A2020/美业前端：持续标准化-CodeReview)
+- [美业前端：持续标准化Code Review](./A2020/美业前端：持续标准化CodeReview)
 ### 2019年
 - [在项目中搭建typescript环境](./A2019/在项目中搭建typescript环境)
 - [GetIntotheShell](./A2019/GetIntotheShell)
-- [Tapable of Webpack](./A2019/Tapable-of-Webpack)
+- [Tapable of Webpack](./A2019/TapableofWebpack)
 ### 2018年
 - [前端构建发布](./A2018/前端构建发布)
 - [浅入深出setState](./A2018/浅入深出setState)
 - [使用postMessage在两个网页间传递数据](./A2018/使用postMessage在两个网页间传递数据)
 - [Immutable](./A2018/Immutable)
 - [linux](./A2018/linux)
-- [Redux and Router](./A2018/Redux-and-Router)
+- [Redux and Router](./A2018/ReduxandRouter)
 - [Styled-Components](./A2018/Styled-Components)
 
 ### 2017年
