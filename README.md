@@ -16,6 +16,7 @@
 ### 2020年
 - [美业前端：持续标准化Code Review](./A2020/美业前端：持续标准化CodeReview)
 ### 2019年
+- [有赞美业店铺装修前端解决方案](./A2019/有赞美业店铺装修前端解决方案)
 - [在项目中搭建typescript环境](./A2019/在项目中搭建typescript环境)
 - [GetIntotheShell](./A2019/GetIntotheShell)
 - [Tapable of Webpack](./A2019/TapableofWebpack)
