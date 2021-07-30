@@ -1,8 +1,14 @@
-> 我的个人博客网址 [94dreamer.com](http://94dreamer.com)，暂时无法访问，服务器没续费搬家中
+# 自我介绍
+> 个人博客网址 [94dreamer.com](http://94dreamer.com)，暂时无法访问，服务器没续费搬家中
 
-> 我的思否主页 [边城到此莫若](https://segmentfault.com/u/bianchengdaocimoruo)，会往团队的专栏发文章
+> 思否主页 [边城到此莫若](https://segmentfault.com/u/bianchengdaocimoruo)，会往团队的专栏发文章
 
-> 我的个人公众号 [码农两点半] 这里更多是一些软性能力的思考
+> 个人UI创作 [94dreamer.zcool.com.cn](https://94dreamer.zcool.com.cn/)
+
+> 个人公众号 [码农两点半] 这里更多是一些软性能力的思考
+
+> 个人微信：zz94530，联系请备注
+
 ## 目录
 - [博客存档](#博客存档)
 - [学习计划](#学习计划)
