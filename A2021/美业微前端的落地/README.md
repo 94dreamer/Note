@@ -157,7 +157,7 @@ Web Components的方案则需要大量的改造成本。
 
 ### 前端流程图
 ![流程图](./imgs/流程图.png)
- 
+
 ## Part 03 关键技术
  > 落地中有哪些值得一提的技术细节
 
@@ -193,10 +193,16 @@ Web Components的方案则需要大量的改造成本。
 主要分为 JavaScript执行环境隔离 和 CSS样式隔离。
 
 JavaScript 执行环境隔离：每当子应用的JavaScript被加载并运行时，它的核心实际上是对全局对象 window 的修改以及一些全局事件的的改变，例如 JQuery 这个js运行之后，会在 window 上挂载一个 window.$ 对象，对于其他库 React、Vue 也不例外。为此，需要在加载和卸载每个子应用的同时，尽可能消除这种冲突和影响，最普遍的做法是采用沙箱机制 SandBox。 
-沙箱机制的核心是让局部的 JavaScript 运行时，对外部对象的访问和修改处在可控的范围内，即无论内部怎么运行，都不会影响外部的对象。通常在 Node.js 端可以采用 vm 模块，而对于浏览器，则需要结合 with 关键字和 window.Proxy 对象来实现浏览器端的沙箱。
+沙箱机制的核心是让局部的 JavaScript 运行时，对外部对象的访问和修改处在可控的范围内，即无论内部怎么运行，都不会影响外部的对象。通常在 Node.js 端可以采用 vm 模块，而对于浏览器，则需要结合 with 关键字和 window.Proxy 对象来实现浏览器端的沙箱，记录变化、还原变化。
+
+`proxy=Proxy(window)   function(window){ ever(js) }(proxy)`
+
+定时器：重写 setTimeout
 
 CSS 样式隔离：当基座应用、子应用同屏渲染时，就可能会有一些样式相互污染，如果要彻底隔离 CSS 污染，可以采用 CSS Module 或者命名空间的方式，给每个子应用模块以特定前缀，即可保证不会相互干扰，可以采用 webpack 的 postcss 插件，在打包时添加特定的前缀。 
-对于子应用与子应用之间的CSS隔离就非常简单，在每次应用加载是，就将改应用所有的 link 和 style 内容进行标记。在应用卸载后，同步卸载页面上对应的 link 和 style 即可。
+对于子应用与子应用之间的CSS隔离就非常简单，在每次应用加载时候，劫持head的appendChild方法，就将改应用所有的 link 和 style 内容进行标记。在应用卸载后，同步卸载页面上对应的 link 和 style 即可。
+
+shadow DOM
 
 ### [架构核心]核心流程图
 
