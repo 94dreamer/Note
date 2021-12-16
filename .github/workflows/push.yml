@@ -1,0 +1,15 @@
+name: All_ON_PUSH
+
+on: push
+
+jobs:
+  All_ON_PUSH:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: checkemail
+        run: log_emails=$(git log --pretty=format:"%ae" -10) && if [[ ${log_emails} =~ '@youzan.com' ]];then echo $log_emails && exit 1;else echo "no";fi
+        shell: bash
+      - run: echo "🚀 This job's status is ${{ job.status }}."
