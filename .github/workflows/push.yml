@@ -15,6 +15,6 @@ jobs:
       - run : log_emails=$(git log --pretty=format:"%ae") && echo $log_emails
       - name: checkemail
         run: |
-          log_emails=$(git log --pretty=format:"%ae" -10) && if [[ ${log_emails} =~ '@youzan.com' ]];then echo $log_emails && exit 2;else echo "邮箱校验通过";fi
+          log_emails=$(git log --pretty=format:"%ae" -10) && if [[ ${log_emails} =~ '@qq.com' ]];then echo $log_emails && exit 2;else echo "邮箱校验通过";fi
         shell: bash
       - run: echo "🚀 This job's status is ${{ job.status }}."
