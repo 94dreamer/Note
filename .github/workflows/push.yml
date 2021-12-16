@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - run : email=$(git config user.email) && echo $email
       - run : global_email=$(git config --global user.email) && echo $global_email
       - run : log_emails=$(git log) && echo $log_emails
       - run : log_emails=$(git log --pretty=format:"%ae") && echo $log_emails
