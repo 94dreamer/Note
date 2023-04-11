@@ -1,5 +1,5 @@
 # 自我介绍
-> 个人博客网址 [94dreamer.com](http://94dreamer.com)，暂时无法访问，服务器没续费搬家中
+> 个人博客网址 [94dreamer.com](http://94dreamer.com)
 
 > 思否主页 [边城到此莫若](https://segmentfault.com/u/bianchengdaocimoruo)，会往团队的专栏发文章
 
